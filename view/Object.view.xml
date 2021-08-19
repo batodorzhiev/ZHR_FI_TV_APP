@@ -1,0 +1,16 @@
+<mvc:View controllerName="ZHR_FI_TV_APP.ZHR_FI_TV_APP.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:core="sap.ui.core">
+	<semantic:SemanticPage id="page" headerPinnable="true" preserveHeaderStateOnScroll="true" toggleHeaderOnTitleClick="true"
+		busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
+		<semantic:titleHeading>
+			<HBox>
+				<Title text="{i18n>objectTitleNumber} {Reinr}" class="margin-right"/>
+				<ObjectStatus inverted="true" text="{StatusText1} {StatusText2}" class="customStatus" state="{ parts: [ {path: 'Status1'}, {path: 'Status2'} ], formatter: '.formatter.statusColor'}"/>
+			</HBox>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<core:Fragment fragmentName="fragment.header.main" type="XML"/>
+		</semantic:headerContent>
+		<core:Fragment fragmentName="fragment.content.main" type="XML"/>
+	</semantic:SemanticPage>
+</mvc:View>

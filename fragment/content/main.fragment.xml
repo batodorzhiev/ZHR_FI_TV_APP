@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox busyIndicatorDelay="0" id="contentVbox">
+		<core:Fragment fragmentName="fragment.content.general" type="XML"/>
+		<core:Fragment fragmentName="fragment.content.report" type="XML"/>
+		<Text text="{= ${ToTrips}.length }" id="tripsLength" visible="false"/>
+		<List items="{ path: 'ToTrips', templateShareable: false }" id="trips" class="customTripsList" noDataText="{i18n>noTrips}"
+			updateFinished="onTripsLoaded">
+			<CustomListItem class="customListItem">
+				<core:Fragment fragmentName="fragment.trips.trips" type="XML"/>
+			</CustomListItem>
+		</List>
+		<core:Fragment fragmentName="fragment.content.estimate" type="XML"/>
+	</VBox>
+</core:FragmentDefinition>

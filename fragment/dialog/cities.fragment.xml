@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover title="{Reinr} ({Surname} {Inits})" class="sapUiPopupWithPadding" placement="Right" initialFocus="action">
+		<VBox>
+			<List class="customCitiesList" items="{ path: 'ToTrips', templateShareable: false }" showNoData="false">
+				<CustomListItem>
+					<Label text="{CityTo}"/>
+				</CustomListItem>
+			</List>
+		</VBox>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>close}" press="handleActionPress"/>
+			</Toolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

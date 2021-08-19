@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<core:Fragment fragmentName="fragment.header.timeline" type="XML"/>
+	<HBox width="100%" class="padding-top" justifyContent="SpaceBetween" validateFieldGroup="onFormValidate" id="form1" data:id="form1">
+		<VBox width="calc(25% - .5rem)">
+			<Label required="true" text="{i18n>fio}"/>
+			<Input value="{Fio}" suggest="onSuggest" placeholder="{i18n>enterFio}" data:filterName="Fio" data:filterKey="Pernr" showSuggestion="true"
+				startSuggestion="2" id="EmployeesSet" selectedKey="{Pernr}"
+				suggestionItems="{ path: '/EmployeesSet', templateShareable: false, events: { dataReceived: '.onInputDataRecieved' } }"
+				enabled="{appView>/isCreate}" width="100%" name="Pernr">
+				<suggestionItems>
+					<core:ListItem text="{Fio}" additionalText="{Pernr}" key="{Pernr}"/>
+				</suggestionItems>
+			</Input>
+		</VBox>
+		<VBox width="calc(25% - .5rem)">
+			<Label required="true" text="{i18n>position}"/>
+			<Input value="{Position}" name="Position" enabled="false" width="100%"/>
+		</VBox>
+		<VBox width="calc(25% - .5rem)">
+			<Label required="true" text="{i18n>dateBeginEnd}"/>
+			<DateRangeSelection name="DateBegin~DateEnd" placeholder="{i18n>dateRangePlaceholder}" fieldGroupIds="form1" enabled="{appView>/isCreate}"
+				dateValue="{DateBegin}" change="onMainDatesChange" secondDateValue="{DateEnd}" width="100%"/>
+		</VBox>
+		<VBox width="calc(25% - .5rem)">
+			<Label required="true" text="{i18n>agreement}"/>
+			<List items="{ path: 'ToFile', filters: [{ path: 'Type', operator: 'EQ', value1: 'agreement' }], templateShareable: true }"
+				modeAnimationOn="true" showSeparators="None" showNoData="false" noDataText="Файлов не найдено" class="customCitiesList">
+				<CustomListItem>
+					<Link text="{Filename}" wrapping="true" target="_blank" href="{Uri}"/>
+				</CustomListItem>
+			</List>
+		</VBox>
+	</HBox>
+</core:FragmentDefinition>

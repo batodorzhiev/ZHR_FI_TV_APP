@@ -1,0 +1,92 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Panel expandable="false" expanded="false" width="100%" class="block">
+		<headerToolbar>
+			<Toolbar class="title">
+				<Title text="{i18n>general}"/>
+			</Toolbar>
+		</headerToolbar>
+		<HBox wrap="Wrap" justifyContent="SpaceBetween" width="100%">
+			<VBox width="100%">
+				<Label required="true" text="{i18n>requestGoal}"/>
+				<Select items="{path: '/TripGoalsSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="false"
+					fieldGroupIds="form2" selectedKey="{= ${TripGoal} === '000' ? '' : ${TripGoal} }" name="TripGoal" change="onTripGoalChange"
+					forceSelection="false">
+					<items>
+						<core:ListItem text="{Name}" key="{Code}" additionalText="{GoalType}"/>
+					</items>
+				</Select>
+				<Select items="{path: 'mock>/RequestTypeSet', templateShareable: false }" enabled="false" visible="false" width="100%"
+					showSecondaryValues="false" selectedKey="{= ${TripType} === '000' ? '' : ${TripType} }" name="TripType" id="requestType"
+					forceSelection="false">
+					<items>
+						<core:ListItem text="{mock>Name}" key="{mock>Code}" additionalText="{mock>Code}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox width="100%" class="margin-top">
+				<Label text="{i18n>tripGoalFormula}" required="true"/>
+				<TextArea value="{ReasonText}" maxLength="255" name="ReasonText" growing="false" rows="3" showExceededText="true"
+					enabled="{appView>/isCreate}" width="100%"/>
+			</VBox>
+			<HBox class="margin-top" width="100%" justifyContent="SpaceBetween">
+				<VBox width="calc(50% - .5rem)">
+					<Label text="{i18n>basicTrip}" required="true"/>
+					<TextArea value="{BasicTrip}" placeholder="{i18n>basicPlaceholder}" maxLength="500" name="BasicTrip" growing="false" rows="5"
+						showExceededText="true" enabled="{appView>/isCreate}" width="100%"/>
+				</VBox>
+				<VBox width="calc(50% - .5rem)">
+					<Label text="{i18n>requestReason}" required="true" wrapping="true"/>
+					<TextArea value="{ReasonTrip}" placeholder="{i18n>reasonPlaceholder}" maxLength="1500" name="ReasonTrip" growing="false" rows="5"
+						showExceededText="true" enabled="{appView>/isCreate}" width="100%"/>
+				</VBox>
+			</HBox>
+			<!--<VBox width="calc(50% - .5rem)" class="margin-top">-->
+			<!--	<Label text="{i18n>requestReason}"/>-->
+			<!--	<TextArea value="{ReasonTrip}" placeholder="{i18n>reasonPlacehoder}" maxLength="1500" name="ReasonTrip" growing="false" rows="5"-->
+			<!--		showExceededText="true" enabled="{appView>/isCreate}" width="100%"/>-->
+			<!--</VBox>-->
+			<VBox width="calc(50% - .5rem)">
+				<Label text="{i18n>tripScanWhy}"/>
+				<List visible="{= !${appView>/isCreate} }"
+					items="{ path: 'ToFile', filters: [{ path: 'Type', operator: 'EQ', value1: 'scan' }], templateShareable: true }" modeAnimationOn="true"
+					showSeparators="None" showNoData="true" noDataText="Вложения отсутствуют" class="customFilesList">
+					<CustomListItem>
+						<Link text="{Filename}" wrapping="true" target="_blank" href="{Uri}"/>
+					</CustomListItem>
+				</List>
+			</VBox>
+			<VBox width="calc(50% - .5rem)">
+				<Label text="{i18n>programFile}"/>
+				<List visible="{= !${appView>/isCreate} }"
+					items="{ path: 'ToFile', filters: [{ path: 'Type', operator: 'EQ', value1: 'program' }], templateShareable: true }" modeAnimationOn="true"
+					showSeparators="None" showNoData="true" noDataText="Вложения отсутствуют" class="customFilesList">
+					<CustomListItem>
+						<Link text="{Filename}" wrapping="true" target="_blank" href="{Uri}"/>
+					</CustomListItem>
+				</List>
+			</VBox>
+			<VBox width="100%">
+				<VBox width="calc(50% - .5rem)" class="margin-top">
+					<Label text="{i18n>directiveText}"/>
+					<TextArea value="{DirectiveComment}" maxLength="500" name="DirectiveComment" growing="true" rows="2" showExceededText="true"
+						enabled="{appView>/isCreate}" width="100%"/>
+				</VBox>
+				<VBox width="calc(50% - .5rem)" class="margin-top">
+					<Label text="{i18n>directiveFile}"/>
+					<List visible="{= !${appView>/isCreate} }"
+						items="{ path: 'ToFile', filters: [{ path: 'Type', operator: 'EQ', value1: 'directive' }], templateShareable: true }" modeAnimationOn="true"
+						showSeparators="None" showNoData="true" noDataText="Вложения отсутствуют" class="customFilesList">
+						<CustomListItem>
+							<Link text="{Filename}" wrapping="true" target="_blank" href="{Uri}"/>
+						</CustomListItem>
+					</List>
+				</VBox>
+			</VBox>
+			<HBox width="100%">
+				<CheckBox enabled="{appView>/isCreate}" class="margin-right" selected="{NightWork}" name="NightWork" text="{i18n>nightWork}"/>
+				<CheckBox enabled="{appView>/isCreate}" selected="{OvertimeWork}" name="OvertimeWork" text="{i18n>overWork}"/>
+			</HBox>
+		</HBox>
+	</Panel>
+</core:FragmentDefinition>

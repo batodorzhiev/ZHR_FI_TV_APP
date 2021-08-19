@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Panel expandable="true" expanded="true" width="100%" class="no-padding">
+		<headerToolbar>
+			<Toolbar class="title">
+				<Input value="{CityFrom}" class="customCityInput" suggest="onSuggest" placeholder="{i18n>enterCityFrom}" data:filterName="Name"
+					showSuggestion="true" startSuggestion="2" suggestionItems="{ path: '/CitySet', templateShareable: false }" enabled="{appView>/isCreate}"
+					width="100%" name="CityFrom" fieldGroupIds="form3">
+					<suggestionItems>
+						<core:ListItem text="{Name} {Type}" additionalText="{Area}{= ${Area} &amp;&amp; ${Region} ? ' / ' : ''}{Region}" key="{Code}"/>
+					</suggestionItems>
+				</Input>
+				<Title text="→"/>
+				<Input value="{CityTo}" class="customCityInput" suggest="onSuggest" placeholder="{i18n>enterCityTo}" data:filterName="Name"
+					showSuggestion="true" startSuggestion="2" suggestionItems="{ path: '/CitySet', templateShareable: false }" enabled="{appView>/isCreate}"
+					width="100%" name="CityTo" fieldGroupIds="form3">
+					<suggestionItems>
+						<core:ListItem text="{Name} {Type}" additionalText="{Area}{= ${Area} &amp;&amp; ${Region} ? ' / ' : ''}{Region}" key="{Code}"/>
+					</suggestionItems>
+				</Input>
+				<Button icon="sap-icon://delete" type="Reject" width="40px" press="removeTransport" visible="{appView>/isCreate}"/>
+			</Toolbar>
+		</headerToolbar>
+		<HBox class="padding" justifyContent="SpaceBetween" wrap="Wrap">
+			<HBox width="100%">
+				<VBox width="calc(50% - .5rem)">
+					<Label text="{i18n>dateFrom}" required="true"/>
+					<DatePicker placeholder="{i18n>datePickerPlaceholder}" fieldGroupIds="form3" dateValue="{DateBegin}" name="DateBegin"
+						enabled="{appView>/isCreate}" width="100%" change="onCheckTransDate"/>
+				</VBox>
+				<Input value="{mock>/transFromBoolean}" data:type="boolean" name="Direction" visible="false"/>
+			</HBox>
+			<VBox width="calc(50% - .5rem)" class="margin-top">
+				<Label text="{i18n>payTrans}" required="true"/>
+				<Select items="{path: 'mock>/PaymentSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="false"
+					fieldGroupIds="form3" selectedKey="{Payment}" name="Payment" forceSelection="false">
+					<items>
+						<core:ListItem text="{mock>Name}" key="{mock>Code}" additionalText="{mock>Code}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox width="calc(50% - .5rem)">
+				<Label text="{i18n>transportType}" required="true" class="margin-top"/>
+				<Select forceSelection="false" items="{path: 'mock>/TransportFromSet', templateShareable: false }" enabled="{appView>/isCreate}"
+					width="100%" showSecondaryValues="false" fieldGroupIds="form3" name="RequestType" selectedKey="{RequestType}" change="onRequestTypeChange">
+					<items>
+						<core:ListItem text="{mock>Name}" key="{mock>Code}" additionalText="{mock>Code}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox class="margin-top" width="100%" visible="{= ${RequestType} === 'RF' ? true : false }">
+				<Label text="{i18n>avia}"/>
+				<Select items="{path: 'mock>/AviaSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="false"
+					selectedKey="{Airline}" name="Airline" forceSelection="false">
+					<items>
+						<core:ListItem text="{mock>Name}" key="{mock>Code}" additionalText="{mock>Code}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox class="margin-top" width="calc(50% - .5rem)" visible="{= ${RequestType} === 'RF' ? true : false }">
+				<Label text="{i18n>class}"/>
+				<Select items="{path: '/AviaClassSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="false"
+					selectedKey="{TypeClass}" name="TypeClass" forceSelection="false">
+					<items>
+						<core:ListItem text="{Name}" key="{Code}" additionalText="{Code}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox class="margin-top" width="calc(50% - .5rem)" visible="{= ${RequestType} === 'RF' ? true : false }">
+				<Label text="{i18n>flightNo}"/>
+				<Input value="{FlightNumber}" name="FlightNumber" enabled="{appView>/isCreate}" width="100%"/>
+			</VBox>
+			<VBox class="margin-top" width="100%" visible="{= ${RequestType} === 'RT' ? true : false }">
+				<Label text="{i18n>class}"/>
+				<Select items="{path: '/RailClassSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="false"
+					selectedKey="{TypeClass}" name="TypeClass" forceSelection="false">
+					<items>
+						<core:ListItem text="{Name}" key="{Code}" additionalText="{Code}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox class="margin-top" width="calc(50% - .5rem)">
+				<Label text="{i18n>transPrice}" required="true"/>
+				<Input value="{ parts: [ 'Price' ], formatter: '.formatter.currency' }" name="Price" liveChange="onRegExp" enabled="{appView>/isCreate}" fieldGroupIds="form3" width="100%"/>
+			</VBox>
+			<VBox class="margin-top" width="calc(50% - .5rem)" visible="{= ${RequestType} === 'RT' || ${RequestType} === 'RF' ? true : false }">
+				<Label text="{i18n>baggage}"/>
+				<Select items="{path: 'mock>/BaggageSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="false"
+					selectedKey="{Baggage}" name="Baggage" forceSelection="false">
+					<items>
+						<core:ListItem text="{mock>Name}" key="{mock>Code}" additionalText="{mock>Code}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox class="margin-top" width="calc(50% - .5rem)" visible="{= ${RequestType} === 'RT' || ${RequestType} === 'RF' ? true : false }">
+				<Label text="{i18n>transferType}" required="true"/>
+				<Select items="{path: '/TransferSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="false"
+					fieldGroupIds="{= ${RequestType} === 'RT' || ${RequestType} === 'RF' ? 'form3' : 'none' }" selectedKey="{Transfer}" name="Transfer"
+					forceSelection="false">
+					<items>
+						<core:ListItem text="{Name}" key="{TransferId}" additionalText="{TransferId}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox class="margin-top" width="calc(50% - .5rem)" visible="{= ${RequestType} === 'RT' || ${RequestType} === 'RF' ? true : false }">
+				<Label text="{i18n>transferPrice}" required="true"/>
+				<Input value="{TransferCost}" name="TransferCost" liveChange="onRegExp" enabled="{appView>/isCreate}"
+					fieldGroupIds="{= ${RequestType} === 'RT' || ${RequestType} === 'RF' ? 'form3' : 'none' }" width="100%"/>
+			</VBox>
+			<VBox class="margin-top" width="calc(50% - .5rem)" visible="{= ${RequestType} === 'CE' ? true : false }">
+				<Label text="{i18n>class}"/>
+				<Select items="{path: '/AutoClassSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="false"
+					selectedKey="{TypeClass}" name="TypeClass" forceSelection="false">
+					<items>
+						<core:ListItem text="{Name}" key="{Code}" additionalText="{Code}"/>
+					</items>
+				</Select>
+			</VBox>
+		</HBox>
+	</Panel>
+</core:FragmentDefinition>

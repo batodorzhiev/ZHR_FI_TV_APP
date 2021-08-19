@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table class="customAddExpList" id="additionalExp"
+		noDataText="{i18n>noAdditionalExp}">
+		<columns>
+			<Column width="33.33%"><Label text="{i18n>expType}"/></Column>
+			<Column width="33.33%"><Label text="{i18n>expPrice}"/></Column>
+			<!--<Column width="33.33%"></Column>-->
+			<Column width="35px" hAlign="End"></Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ComboBox items="{path: '/ExpensesSet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%"
+						filterSecondaryValues="true" showSecondaryValues="false" fieldGroupIds="form3" selectedKey="{Code}" name="Code">
+						<items>
+							<core:ListItem text="{Name}" key="{Code}" additionalText="{Code}"/>
+						</items>
+					</ComboBox>
+					<Input value="{Price}" liveChange="onRegExp" name="Price" enabled="{appView>/isCreate}" fieldGroupIds="form3" width="100%"/>
+					<!--<CheckBox selected="{Flag}" class="ie-fix" name="Flag" text="{i18n>expAvans}" enabled="{appView>/isCreate}"/>-->
+					<Button icon="sap-icon://delete" type="Reject" width="40px" press="removeAdditional" visible="{appView>/isCreate}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Panel expandable="false" expanded="false" visible="{= ${Role} !== 'edu' ? true : false }" width="100%"
+		class="margin-top block tablePadding margin-bottom">
+		<headerToolbar>
+			<Toolbar class="title">
+				<Title text="{i18n>estimate}"/>
+			</Toolbar>
+		</headerToolbar>
+		<Table id="estimeShowTable" width="100%" items="{ path: 'ToEstimate', templateShareable: true}" growing="true" growingScrollToLoad="true">
+			<columns>
+				<Column width="200px">
+					<Text text="Тип расходов на служебную командировку"/>
+				</Column>
+				<Column hAlign="Center" width="80px">
+					<Text text="Единица измерения"/>
+				</Column>
+				<Column hAlign="Center" width="80px">
+					<Text text="Количество"/>
+				</Column>
+				<Column hAlign="Center" width="100px">
+					<Text text="Цена, &#8381;"/>
+				</Column>
+				<Column hAlign="Center" width="110px">
+					<Text text="Стоймость, &#8381;"/>
+				</Column>
+				<Column hAlign="Center" width="120px">
+					<Text text="Запрашиваемый аванс, &#8381;"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Inactive">
+					<cells>
+						<Text text="{Sptxt}">
+							<customData>
+								<core:CustomData key="class" value="{= ${Sptxt} === 'Итог, в т.ч.' ? 'bold' : '' }" writeToDom="true"/>
+							</customData>
+						</Text>
+						<Text text="{Zzwaers}"/>
+						<Text text="{Zzmenge}"/>
+						<Text text="{Zzpreis}"/>
+						<Text text="{Zzwrbtr}">
+							<customData>
+								<core:CustomData key="class" value="{= ${Sptxt} === 'Итог, в т.ч.' ? 'bold' : '' }" writeToDom="true"/>
+							</customData>
+						</Text>
+						<Text text="{Zzdmbtr}">
+							<customData>
+								<core:CustomData key="class" value="{= ${Sptxt} === 'Итог, в т.ч.' ? 'bold' : '' }" writeToDom="true"/>
+							</customData>
+						</Text>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</Panel>
+</core:FragmentDefinition>

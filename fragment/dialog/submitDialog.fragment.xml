@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="{i18n>submitDialog}" class="sapUiContentPadding dialogWith" id="submitDialog">
+		<content>
+			<TextArea id="submitCommentary" rows="3" liveChange="checkTextAreaLength" showExceededText="true" cols="1000" growing="true" maxLength="150"
+				width="100%"/>
+		</content>
+		<buttons>
+			<Button text="{i18n>cancel}" data:id="submitDialog" type="Back" press="cancelDialog"/>
+			<Button type="Accept" text="{i18n>skipJustification}" id="skipJustification" data:id="submitDialog" press="onChangeStatus"
+				data:path="/Approve" data:uname="{mock>/delegUname}"/>
+			<Button type="Accept" text="{i18n>addJustification}" id="addJustification" data:id="submitDialog" press="onChangeStatus"
+				data:uname="{mock>/delegUname}" data:path="/Approve"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

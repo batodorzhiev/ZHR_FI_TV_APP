@@ -1,0 +1,113 @@
+<mvc:View controllerName="ZHR_FI_TV_APP.ZHR_FI_TV_APP.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<semantic:SemanticPage id="page" headerPinnable="true" preserveHeaderStateOnScroll="true" toggleHeaderOnTitleClick="true">
+		<semantic:titleHeading>
+			<Title text="{i18n>worklistTitle}"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<HBox justifyContent="SpaceBetween" width="100%">
+				<HBox alignItems="End" id="filterItems" wrap="Wrap">
+					<VBox width="150px" class="margin-right">
+						<Label text="{i18n>reinr}"/>
+						<Input placeholder="Введите № заявки" width="100%" name="Reinr" value="{Reinr}"/>
+					</VBox>
+					<VBox width="150px" class="margin-right">
+						<Label text="{i18n>pernr}"/>
+						<Input placeholder="Введите табельный номер" width="100%" name="Pernr" value="{Pernr}"/>
+					</VBox>
+					<VBox class="margin-right" width="200px">
+						<Label text="{i18n>fio}"/>
+						<Input value="{Surname}" placeholder="{i18n>enterFio}" tooltip="{i18n>worklistSearchTooltip}" name="Surname" width="100%"/>
+					</VBox>
+					<VBox class="margin-right" width="200px">
+						<Label text="{i18n>country}"/>
+						<Select items="{path: 'mock>/CountrySet', templateShareable: false }" width="100%" showSecondaryValues="false" name="Country" data:op="EQ"
+							class="margin-right" change="onCountryChange" forceSelection="false" selectedKey="{Country}">
+							<items>
+								<core:ListItem text="{mock>Name}" key="{mock>Code}" additionalText="{mock>Add}"/>
+							</items>
+						</Select>
+					</VBox>
+					<VBox class="margin-right" width="300px">
+						<Label text="{i18n>dateBeginEnd}"/>
+						<DateRangeSelection placeholder="{i18n>enterDates}" dateValue="{DateBegin}" secondDateValue="{DateEnd}" valueFormat="yyyy-MM-dd"
+							name="DateBegin~DateEnd" data:op="BT"/>
+					</VBox>
+					<VBox width="240px">
+						<CheckBox selected="{PastTrip}" name="PastTrip" data:op="EQ" text="{i18n>endedTrips}"/>
+					</VBox>
+					<VBox width="240px" visible="{worklistView>/supportFlag}">
+						<CheckBox selected="{Support}" name="Support" data:op="EQ" text="{i18n>supportFlag}"/>
+					</VBox>
+					<HBox width="230px" alignItems="Center" justifyContent="SpaceBetween">
+						<CheckBox selected="{All}" select="onSelectAll" name="All" data:op="EQ" text="{i18n>myRequests}"/>
+						<!--<core:Icon src="sap-icon://message-information" class="iconSize1 margin-right" color="#1C4C98" press="onPopOver"/>-->
+					</HBox>
+				</HBox>
+				<HBox alignItems="End">
+					<Button text="{i18n>search}" press="onSearch" width="70px" class="margin-right"/>
+					<Button type="Emphasized" text="{i18n>reqList}" visible="{worklistView>/isEIO}" class="margin-right" press="onAskDownload"
+						id="massDownloadButton" enabled="false"/>
+					<Button enabled="false" type="Accept" id="massApproveButton" class="margin-right" text="{i18n>approve}" press="onMassApprove"
+						visible="{= !${worklistView>/isEIO} }"/>
+					<Button type="Reject" text="{i18n>cancelDeleg}" press="onCancelDeleg" visible="{= ${mock>/delegUname} ? true : false }" class="margin-right"
+						data:nav="worklist"/>
+					<Button type="Emphasized" class="customBold" text="{i18n>delegate}" press="openDialog" data:id="delegateDialog"
+						visible="{= !${worklistView>/isEIO} }"/>
+				</HBox>
+			</HBox>
+		</semantic:headerContent>
+		<semantic:content>
+			<Table id="table" width="auto"
+				items="{ path: '/RequestListSet', filters: [{ path: 'AppID', operator: 'EQ', value1: 'ZHR_FI_TV_APP' }], parameters: { expand: 'ToTrips' } }"
+				noDataText="{worklistView>/tableNoDataText}" growingThreshold="20" busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				updateFinished="onTableDataReceived" mode="MultiSelect" selectionChange="onSelectionChange" alternateRowColors="true"
+				fixedLayout="true"
+				popinLayout="Block"
+				>
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column hAlign="Center"><Label text="{i18n>reinr}"/></Column>
+					<Column hAlign="Center"><Label text="{i18n>pernrShort}"/></Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true"><Label text="{i18n>dateCreate}"/></Column>
+					<Column hAlign="Center" ><Label text="{i18n>dateBeginEnd}"/></Column>
+					<Column hAlign="Center" ><Label text="{i18n>worker}"/></Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true"><Label text="{i18n>type}"/></Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true"><Label text="{i18n>country}"/></Column>
+					<Column hAlign="Center" ><Label text="{i18n>trip}"/></Column>
+					<Column hAlign="Center" minScreenWidth="Desktop" demandPopin="true"><Label text="{i18n>status}"/></Column>
+					<Column hAlign="Center" visible="{worklistView>/isEdu}"><Label text="{i18n>executor}"/></Column>
+					<Column hAlign="Center" width="130px"><Label text="{i18n>more}"/></Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Inactive">
+						<cells>
+							<Text text="{Reinr}"/>
+							<Text text="{Pernr}"/>
+							<Text text="{ path: 'DateCreate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' } }"/>
+							<Text
+								text="{ path: 'DateBegin', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' } } {= ${DateEnd} ? '&#8594;' : ''} { path: 'DateEnd', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd.MM.yyyy' } }"/>
+							<Text text="{Surname} {Inits}"/>
+							<Text textAlign="Center" text="{TripGoal}"/>
+							<Text textAlign="Center" text="{Country}"/>
+							<Link text="{City} {= ${ToTrips}.length > 1 ? ' +' : '' }{= ${ToTrips}.length > 1 ? ${ToTrips}.length - 1 : '' }"
+								enabled="{= ${ToTrips}.length > 1 ? true : false }" press="showCities"/>
+							<ObjectStatus inverted="true" text="{StatusText1} {StatusText2}" class="customStatus"
+								state="{ parts: [ {path: 'Status1'}, {path: 'Status2'} ], formatter: '.formatter.statusColor'}"/>
+							<HBox justifyContent="Center" visible="{worklistView>/isEdu}">
+								<Button width="100%" visible="{InJobFlag}" press="onTake" text="{i18n>take}"/>
+								<Text text="{FioAppr}" visible="{= !${InJobFlag} }"/>
+							</HBox>
+							<Button type="Emphasized" text="{i18n>more}" press="onPress" icon="sap-icon://begin" iconFirst="false"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>

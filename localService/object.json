@@ -1,0 +1,141 @@
+{
+	"isTrips": false,
+	"ToTimeline": [{
+		"Fio": "Иванов А.И.",
+		"Status": "02",
+		"Date": "01.01.2020",
+		"Time": "13:30",
+		"Commentary": "Создал заявку"
+	}, {
+		"Fio": "Петров Д.И.",
+		"Status": "03",
+		"Date": "02.01.2020",
+		"Time": "14:30",
+		"Commentary": "В работе на согласовании"
+	}],
+	"agreementFile": "Consent_to_work_file.docx",
+	"reasonFile": "Reason_for_work_file.docx",
+	"Activity": "011",
+	"TripScanWhy": "scan_doc.docx",
+	"Phone": "+7 (999) 999 99 99",
+	"Company": "K101",
+	"PaymentSet": [{
+		"Code": "01",
+		"Name": "Закупка работодателем"
+	},{
+		"Code": "02",
+		"Name": "Закупка работником"
+	}],
+	"Payment": "01",
+	"Payment2": "02",
+	"TransportToSet":[{
+		"Code": "OF",
+		"Name": "Авиа"
+	},{
+		"Code": "OT",
+		"Name": "Железнодорожный"
+	},{
+		"Code": "CE",
+		"Name": "Автомобильный"
+	},{
+		"Code": "O",
+		"Name": "Другой"
+	}],
+	"TransportFromSet":[{
+		"Code": "RF",
+		"Name": "Авиа"
+	},{
+		"Code": "RT",
+		"Name": "Железнодорожный"
+	},{
+		"Code": "CE",
+		"Name": "Автомобильный"
+	},{
+		"Code": "O",
+		"Name": "Другой"
+	}],
+	"ClassSet": [{
+		"Code": "01",
+		"Name": "Эконом"
+	},{
+		"Code": "02",
+		"Name": "Бизнес"
+	},{
+		"Code": "03",
+		"Name": "Первый"
+	}],
+	"AviaSet": [{
+		"Code": "01",
+		"Name": "ПАО Аэрофлот"
+	},{
+		"Code": "02",
+		"Name": "ПАО Сибирь"
+	},{
+		"Code": "03",
+		"Name": "Другая"
+	}],
+	"Avia": "01",
+	"AviaClass": "E",
+	"FlightNoTo": "U1-234",
+	"FlightNoFrom": "U4-321",
+	"BaggageSet": [{
+		"Code": "01",
+		"Name": "Нормативный"
+	},{
+		"Code": "02",
+		"Name": "Сверхнормативный"
+	}],
+	"BaggageTo": "01",
+	"BaggageFrom": "02",
+	"HotelClass": "L",
+	"RequestTypeSet": [{
+		"Code": "0001",
+		"Name": "Производственная"
+	},{
+		"Code": "0002",
+		"Name": "Непроизводственная"
+	}],
+	"RequestType": "01",
+	"HotelArrow": 3,
+	"TransferSet": [{
+		"Code": "1",
+		"Name": "Такси"
+	},{
+		"Code": "2",
+		"Name": "Автобус"
+	}],
+	"TransferFrom": "01",
+	"TransferTo": "01",
+	"TransferPrice": "500",
+	"TrainTypeSet": [{
+		"Code": "О",
+		"Name": "Общий"
+	},{
+		"Code": "С",
+		"Name": "Сидячий"
+	},{
+		"Code": "П",
+		"Name": "Плацкартный"
+	},{
+		"Code": "К",
+		"Name": "Купейный"
+	},{
+		"Code": "СВ",
+		"Name": "СВ"
+	},{
+		"Code": "Л",
+		"Name": "Повышенной комфортности"
+	},{
+		"Code": "РИЦ",
+		"Name": "РИЦ"
+	}],
+	"CountrySet": [{
+		"Code": "RU",
+		"Name": "Россия",
+		"Add": "RU"
+	}, {
+		"Code": "RU",
+		"Name": "За рубежом",
+		"Add": ""
+	}]
+}

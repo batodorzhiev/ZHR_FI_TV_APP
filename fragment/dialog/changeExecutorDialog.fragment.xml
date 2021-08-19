@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="{i18n>changeExecutor}" stretch="{device>/system/phone}" class="sapUiContentPadding" id="changeExecutorDialog"
+		horizontalScrolling="false" verticalScrolling="false">
+		<content>
+			<VBox width="300px">
+				<Input value="{FioAppr}" suggest="onSuggest" placeholder="{i18n>enterFio}" fieldGroupIds="EmployeesSet"
+					suggestionItemSelected="onFioSelected" data:filterName="Fio" data:filterKey="Pernr" showSuggestion="true" startSuggestion="2"
+					id="EmployeesSet" suggestionItems="{ path: '/EmployeesSet', templateShareable: false, events: { dataReceived: '.onInputDataRecieved' } }"
+					width="100%" name="Pernr" data:checkProperty="pernr">
+					<suggestionItems>
+						<core:ListItem text="{Fio}" additionalText="{Pernr}" key="{Pernr}"/>
+					</suggestionItems>
+				</Input>
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="{i18n>cancel}" data:id="changeExecutorDialog" type="Back" press="cancelDialog"/>
+			<Button type="Accept" text="{i18n>changeExecutor}" data:id="changeExecutorDialog" id="changeExecutorDialogButton" data:reinr="{Reinr}"
+				press="onChangeExecutor" enabled="false"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

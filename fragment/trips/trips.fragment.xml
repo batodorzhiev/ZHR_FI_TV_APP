@@ -1,0 +1,131 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Panel expandable="true" expanded="true" width="100%" class="custom-padding">
+		<headerToolbar>
+			<Toolbar class="title">
+				<Title
+					text="{i18n>trip} { parts: [ {path: 'ItineraryNumber'} ], formatter: '.formatter.numbers'}{= ${objectView>/tripsLength} ? ' / ' : '' }{objectView>/tripsLength}"/>
+				<ToolbarSpacer/>
+				<Button type="Reject" icon="sap-icon://delete" press="removeTrip" visible="{appView>/isCreate}"/>
+			</Toolbar>
+		</headerToolbar>
+		<HBox justifyContent="SpaceBetween" class="padding block">
+			<VBox width="calc(16.66% - .5rem)">
+				<Label required="true" text="{i18n>country}"/>
+				<Select items="{path: '/CountrySet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" showSecondaryValues="true"
+					fieldGroupIds="CountrySet,form3" name="Country" selectedKey="{= ${Country} ? ${Country} : 'RU'}" change="onCountryChange"
+					data:pernr="{Pernr}" data:reinr="{Reinr}" forceSelection="false">
+					<items>
+						<core:ListItem text="{Name}" key="{Code}" additionalText="{Code}"/>
+					</items>
+				</Select>
+			</VBox>
+			<VBox width="calc(16.66% - .5rem)">
+				<Label text="{i18n>city}" required="true"/>
+				<Input value="{= ${CityFrom} ? ${CityFrom} : ${CityTo} }" suggest="onSuggest" placeholder="{i18n>enterCity}"
+					suggestionItemSelected="onCitySelected" data:filterName="Name" showSuggestion="true" startSuggestion="2" fieldGroupIds="form3"
+					suggestionItems="{ path: '/CitySet', templateShareable: false }" enabled="{appView>/isCreate}" width="100%" name="CityFrom">
+					<suggestionItems>
+						<core:ListItem text="{Name} {Type}" additionalText="{Area}{= ${Area} &amp;&amp; ${Region} ? ' / ' : ''}{Region}" key="{Code}"/>
+					</suggestionItems>
+				</Input>
+			</VBox>
+			<VBox width="calc(16.66% - .5rem)">
+				<Label text="{i18n>region}"/>
+				<Select items="{ path: '/RegionSet', templateShareable: false }" 
+					enabled="false"
+					visible="{= ${appView>/isCreate} ? true : false  }"
+					width="100%" showSecondaryValues="true" name="Region"
+					selectedKey="{Region}" forceSelection="false">
+					<items>
+						<core:ListItem text="{Name}" key="{Code}" additionalText="{Code}"/>
+					</items>
+				</Select>
+	 			<Text
+					text="{RegionName}"
+					tooltip="{RegionName}"
+					visible="{= ${appView>/isCreate} ? false : true  }"
+					width="100%"
+					maxLines="1"
+					class="sapUiTinyMarginTop"
+					wraping="true" />
+			</VBox>
+			<VBox width="calc(16.66% - .5rem)">
+				<Label required="true" text="{i18n>tripPeriod}"/>
+				<DateRangeSelection name="DateBegin~DateEnd" placeholder="{i18n>dateRangePlaceholder}" fieldGroupIds="form3" enabled="{appView>/isCreate}"
+					dateValue="{DateBegin}" change="onCheckTransDate" secondDateValue="{DateEnd}" width="100%"/>
+			</VBox>
+			<VBox width="calc(16.66% - .5rem)">
+				<Label required="true" text="{i18n>company}"/>
+				<ComboBox items="{path: '/OrgSet', templateShareable: false }" 
+					enabled="{appView>/isCreate}"
+					visible="{= ${appView>/isCreate} ? true : false  }"
+					width="100%"
+					showSecondaryValues="true"
+					fieldGroupIds="form3" value="{Zzorg}" name="Zzorg">
+					<items>
+						<core:ListItem text="{Name}" key="{Code}" additionalText="{Code}"/>
+					</items>
+				</ComboBox>
+				<Text
+					text="{Zzorg}"
+					tooltip="{Zzorg}"
+					width="100%"
+					maxLines="1"
+					class="sapUiTinyMarginTop"
+					wraping="true"
+					visible="{= ${appView>/isCreate} ? false : true  }" />
+			</VBox>
+			<HBox width="calc(16.66% - .5rem)" justifyContent="SpaceBetween">
+				<VBox width="calc(100% - 100px - .5rem)">
+					<Label required="true" text="{i18n>betfa}"/>
+					<Input value="{Betfa}" type="Number" data:type="Number" enabled="false"/>
+				</VBox>
+				<VBox width="calc(100px - .5rem)">
+					<Label text="{i18n>currency}"/>
+					<Select items="{path: 'mock>/CurrencySet', templateShareable: false }" enabled="false" width="100%" showSecondaryValues="false"
+						selectedKey="{= ${Waers} ? ${Waers} : 'RUB' }" name="Waers" forceSelection="false">
+						<items>
+							<core:ListItem text="{mock>Name}" key="{mock>Code}" additionalText="{mock>Code}"/>
+						</items>
+					</Select>
+				</VBox>
+			</HBox>
+		</HBox>
+		<HBox justifyContent="SpaceBetween" alignContent="Center" class="padding-top" alignItems="Start">
+			<VBox width="calc(33.33% - .5rem)" class="block margin-bottom">
+				<HBox justifyContent="SpaceBetween" alignItems="Center" width="100%" class="padding border-bottom">
+					<Title titleStyle="H4" text="{i18n>transportTo}" class="no-inline"/>
+					<Button icon="sap-icon://add" type="Emphasized" width="40px" press="addTransport" visible="{appView>/isCreate}"/>
+				</HBox>
+				<List items="{ path: 'ToTransTo', templateShareable: false }" class="customTransList" updateFinished="onTransLoaded">
+					<CustomListItem class="customListItem">
+						<core:Fragment fragmentName="fragment.trips.transTo" type="XML"/>
+					</CustomListItem>
+				</List>
+			</VBox>
+			<VBox width="calc(33.33% - .5rem)" class="block margin-bottom">
+				<HBox justifyContent="SpaceBetween" alignItems="Center" width="100%" class="padding border-bottom">
+					<Title titleStyle="H4" text="{i18n>transportFrom}" class="no-inline"/>
+					<Button icon="sap-icon://add" type="Emphasized" width="40px" press="addTransport" visible="{appView>/isCreate}"/>
+				</HBox>
+				<List items="{ path: 'ToTransFrom', templateShareable: false }" class="customTransList" updateFinished="onTransLoaded">
+					<CustomListItem class="customListItem">
+						<core:Fragment fragmentName="fragment.trips.transFrom" type="XML"/>
+					</CustomListItem>
+				</List>
+			</VBox>
+			<VBox width="calc(33.33% - .5rem)" class="block">
+				<HBox justifyContent="SpaceBetween" alignItems="Center" width="100%" class="padding border-bottom">
+					<Title titleStyle="H4" text="{i18n>living}" class="no-inline"/>
+					<Button icon="sap-icon://add" type="Emphasized" width="40px" press="addTransport" visible="{appView>/isCreate}"/>
+				</HBox>
+				<List items="{ path: 'ToTransHotel', templateShareable: false }" class="customTransList" updateFinished="onTransLoaded">
+					<CustomListItem class="customListItem">
+						<core:Fragment fragmentName="fragment.trips.transHotel" type="XML"/>
+					</CustomListItem>
+				</List>
+			</VBox>
+		</HBox>
+	</Panel>
+</core:FragmentDefinition>

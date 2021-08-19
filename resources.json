@@ -1,0 +1,133 @@
+{
+    "resources": [
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "fragment/trips/transHotel.fragment.xml"
+        },
+        {
+            "name": "fragment/trips/transFrom.fragment.xml"
+        },
+        {
+            "name": "fragment/trips/transTo.fragment.xml"
+        },
+        {
+            "name": "fragment/trips/trips.fragment.xml"
+        },
+        {
+            "name": "fragment/trips/additionalExp.fragment.xml"
+        },
+        {
+            "name": "fragment/content/estimate.fragment.xml"
+        },
+        {
+            "name": "fragment/content/report.fragment.xml"
+        },
+        {
+            "name": "fragment/content/general.fragment.xml"
+        },
+        {
+            "name": "fragment/content/main.fragment.xml"
+        },
+        {
+            "name": "fragment/header/main.fragment.xml"
+        },
+        {
+            "name": "fragment/header/timeline.fragment.xml"
+        },
+        {
+            "name": "fragment/dialog/delegateDialog.fragment.xml"
+        },
+        {
+            "name": "fragment/dialog/rejectDialog.fragment.xml"
+        },
+        {
+            "name": "fragment/dialog/submitDialog.fragment.xml"
+        },
+        {
+            "name": "fragment/dialog/advPaymentPopup.fragment.xml"
+        },
+        {
+            "name": "fragment/dialog/cities.fragment.xml"
+        },
+        {
+            "name": "fragment/dialog/changeExecutorDialog.fragment.xml"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "localService/object.json"
+        },
+        {
+            "name": "localService/mockserver.js"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "view/Worklist.view.xml"
+        },
+        {
+            "name": "view/ObjectNotFound.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/Object.view.xml"
+        },
+        {
+            "name": "view/NotFound.view.xml"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/Worklist.controller.js"
+        },
+        {
+            "name": "controller/Object.controller.js"
+        },
+        {
+            "name": "controller/NotFound.controller.js"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        }
+    ]
+}

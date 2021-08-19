@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:ui="sap.suite.ui.commons">
+	<Panel visible="{= ${Reinr} ? true : false }" expandable="true" expanded="true" width="100%" class="no-padding">
+		<headerToolbar>
+			<Toolbar class="title">
+				<Title text="История изменений"/>
+				<ToolbarSpacer/>
+				<ComboBox placeholder="{i18n>uploadForms}" visible="{= ${Role} !== 'edu' ? true : false }" width="300px" filterSecondaryValues="true"
+					showSecondaryValues="false" change="onFormSelect">
+					<items>
+						<core:ListItem text="{i18n>form1}"
+							data:url="/sap/opu/odata/sap/zhr_fi_tv_req_srv/AgreementSet(Pernr='{Pernr}',Reinr='',Type='weekend')/$value" key="0"/>
+						<core:ListItem text="{i18n>form2}"
+							data:url="/sap/opu/odata/sap/ZHR_FI_TV_REQ_SRV/LoadBookingSet(Pernr='{Pernr}',Reinr='{Reinr}',Type='NOTE_SECONDMENT')/$value" key="1"/>
+						<core:ListItem text="{i18n>form3}"
+							data:url="/sap/opu/odata/sap/ZHR_FI_TV_REQ_SRV/LoadBookingSet(Pernr='{Pernr}',Reinr='{Reinr}',Type='PRICE_SECONDMENT')/$value" key="2"/>
+						<core:ListItem text="{i18n>form4}"
+							data:url="/sap/opu/odata/sap/ZHR_FI_TV_REQ_SRV/ListApproveSet(Pernr='{Pernr}',Reinr='{Reinr}',Type='')/$value" key="3"/>
+						<core:ListItem text="{i18n>form5}"
+							data:url="/sap/opu/odata/sap/ZHR_FI_TV_REQ_SRV/LoadBookingSet(Pernr='{Pernr}',Reinr='{Reinr}',Type='ORDER_TRANSFER_TRIP')/$value"
+								key="4" enabled="{OrderChange}"/>
+						<core:ListItem text="{i18n>form6}"
+							data:url="/sap/opu/odata/sap/ZHR_FI_TV_REQ_SRV/LoadBookingSet(Pernr='{Pernr}',Reinr='{Reinr}',Type='ORDER_CANCEL_TRIP')/$value" key="5"
+								enabled="{OrderCancell}"/>
+					</items>
+				</ComboBox>
+				<Button type="Emphasized" text="{i18n>take}" visible="{InJobFlag}" press="onTake" data:pernr="{UserPernr}" data:reinr="{Reinr}"/>
+				<Button type="Emphasized" text="{i18n>changeExecutor}" visible="{= ${Role} === 'eio' &amp;&amp; ${FioAppr} ? true : false }"
+					press="onChangeExecutor" data:pernr="{UserPernr}" data:reinr="{Reinr}"/>
+				<Button type="Reject" text="{i18n>reject}" press="openDialog" visible="{ChangeFlag}" data:id="rejectDialog"/>
+				
+				<!--<Button type="Accept" text="{= ${Status2} === '05' ? ${i18n>submit} : ${i18n>approve} }" press="onChangeStatus" visible="{ChangeFlag}"-->
+				<!--	data:path="/Approve" data:uname="{mock>/delegUname}"/>-->
+
+				<Button type="Accept" text="{i18n>approve}" press="onChangeStatus" visible="{= ${ChangeFlag}  &amp;&amp; ${Status2} !== '05'}"
+					data:path="/Approve" data:uname="{mock>/delegUname}"/>
+				<Button type="Accept" text="{i18n>submit}" press="openDialog" visible="{= ${ChangeFlag} &amp;&amp; ${Status2} === '05'}"
+					data:path="/Approve" data:uname="{mock>/delegUname}" data:id="submitDialog"/>
+				<Button type="Emphasized" text="{i18n>formReq}" visible="{ButtonOrderForm}"
+					data:url="/sap/opu/odata/sap/ZHR_FI_TV_REQ_SRV/LoadOrder(Pernr='{Pernr}',Reinr='{Reinr}',Filename='1')/$value" press="onDownload"/>
+			</Toolbar>
+		</headerToolbar>
+		<ui:Timeline width="100%" textHeight="3" showHeaderBar="false" axisOrientation="Horizontal" enableDoubleSided="false" alignment="Right"
+			lazyLoading="false" growingThreshold="0" growing="false"
+			content="{ path: 'ToTimeLine', filters: [{ path: 'Id', operator: 'EQ', value1: 'APP' }] }" class="customTimeline" id="timeline" sort="false">
+			<ui:content>
+				<ui:TimelineItem dateTime="{Date} - {Time}"
+					title="{StatusText}{= ${Role} &amp;&amp; ${StatusText} ? ' - ' : '' }{Role}{= ${FioD} ? ${i18n>lineFeed} : '' }{= ${FioD} ? '(' : '' }{= ${FioD} ? ${i18n>deleg} : '' } {FioD}{= ${FioD} ? ')' : '' }{PrevAprov} &#xA; {NewAprov}"
+					maxCharacters="5000" status="{ parts: [ {path: 'Status'} ], formatter: '.formatter.color'}" userNameClickable="false" text="{Commentary}"
+					userName="{Fio}" icon="{ parts: [ {path: 'Status'} ], formatter: '.formatter.icon'}"/>
+			</ui:content>
+		</ui:Timeline>
+	</Panel>
+</core:FragmentDefinition>

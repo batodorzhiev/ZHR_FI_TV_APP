@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="{i18n>delegate}" stretch="{device>/system/phone}" class="sapUiContentPadding" id="delegateDialog">
+		<content>
+			<Table mode="SingleSelectMaster" items="{path: '/DelegSet', templateShareable: false }" selectionChange="onDelegateSelect">
+				<columns>
+					<Column>
+						<Label text="{i18n>fio}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Fio}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button text="{i18n>cancel}" data:id="delegateDialog" type="Back" press="cancelDialog"/>
+			<Button type="Accept" text="{i18n>delegate}" data:id="delegateDialog" id="delegateDialogButton" press="doDelegate" enabled="false"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

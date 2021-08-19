@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover title="ASd" placement="Top" initialFocus="email" class="padding" showHeader="false" contentWidth="800px" enableScrolling="false">
+		<Text wrapping="true" text='При активации чекбокса "Нужен аванс" Вам будет выплачен аванс по позициям основных расходов по командировке.'/>
+	</Popover>
+</core:FragmentDefinition>

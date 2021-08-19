@@ -1,0 +1,251 @@
+.sapFDynamicPageHeader.sapFDynamicPageHeaderWithContent,
+.sapFDynamicPageTitleWrapper.sapFDynamicPageTitleSnapped>.sapFDynamicPageTitle,
+.sapFDynamicPageTitleWrapper.sapFDynamicPageTitleOnly>.sapFDynamicPageTitle,
+.sapMBarPH {
+    box-shadow: 0 0 0.25rem 0 rgba(0, 0, 0, 0.15), inset 0 -0.0625rem 0 0 #d9d9d9;
+}
+
+[data-class="bold"] {
+    font-weight: bold !important;
+}
+.dialogWith{
+	width:756px !important;
+}
+
+.customCitiesList li {
+    border-bottom: 0;
+    background-color: transparent;
+}
+
+/* Для вывода делегата во вторую строку */
+.sapSuiteUiCommonsTimelineItemShellHdr {
+	white-space: pre-line;
+}
+
+.customStatus span{
+	text-transform: uppercase;
+    font-size: 0.8rem !important;
+    text-shadow: black 0px 1px !important;
+    /*border: 1px solid #000 !important;*/
+    font-weight: bold;
+}
+
+.wideBox {
+    width: 500px;
+}
+
+.padding {
+    padding: 1rem;
+}
+
+.customBold .sapMBtnInner {
+    font-weight: bold;
+    border: 1px solid #000 !important;
+}
+
+.customSemanticPage .sapFDynamicPageContent,
+.customSemanticPage .sapFDynamicPageContent>.sapFDynamicPageContentFitContainer {
+    padding: 2rem 3rem;
+}
+
+.customTimeline ul,
+.customTimeline .sapSuiteUiCommonsTimelineScrollH .sapSuiteUiCommonsTimelineItemBubble {
+    padding: 0;
+}
+
+.customTimeline .sapSuiteUiCommonsTimelineItemShellUser {
+    display: block;
+}
+
+.customTimeline .sapSuiteUiCommonsTimelineItemFirstBar {
+    width: 0;
+}
+
+.margin-right {
+    margin-right: 1rem !important;
+}
+
+.margin-top {
+    margin-top: 1rem;
+}
+
+.padding-left {
+    padding-left: 1rem;
+}
+
+.padding-right {
+    padding-right: 1rem;
+}
+
+.padding-top {
+    padding-top: 1rem;
+}
+
+.padding-bottom {
+    padding-bottom: 1rem;
+}
+
+.padding-bottom-half {
+    padding-bottom: .5rem;
+}
+
+.block {
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 0 0.25rem 0 rgba(0, 0, 0, 0.15), inset 0 -0.0625rem 0 0 #d9d9d9;
+}
+
+.customTripsList .sapMListNoData {
+    border-bottom: 0;
+    border-radius: 3px;
+    box-shadow: 0 0 0.25rem 0 rgba(0, 0, 0, 0.15), inset 0 -0.0625rem 0 0 #d9d9d9;
+    height: 3rem;
+}
+
+.customAddExpList .sapMListNoData,
+.customTransList .sapMListNoData {
+    border-bottom: 0;
+    height: 3rem;
+    box-shadow: none;
+}
+
+.title {
+    height: 3rem !important;
+}
+
+.customListItem {
+    border-bottom: 0;
+    background-color: transparent;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #cccccc;
+}
+
+.borderTitle {
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+    width: 100%;
+}
+
+.margin-bottom {
+    margin-bottom: 1rem;
+}
+
+.tablePadding .sapMPanelContent {
+    padding: 0;
+}
+
+.tablePadding .sapMListShowSeparatorsAll .sapMLIBShowSeparator:last-child>td {
+    border-bottom: 0;
+}
+
+.tablePadding .sapMLIBShowSeparator>td {
+    border-right: 1px solid #e5e5e5;
+}
+
+.tablePadding .sapMListTbl .sapMLabel {
+    font-size: 0.75rem;
+}
+
+.customIconTabBar .sapMITBContainerContent {
+    display: none;
+}
+
+.customIconTabBar .sapMITH {
+    box-shadow: none;
+    border-bottom: 0;
+    background-color: transparent;
+}
+
+.customIconTabBar .sapMITBHead,
+.customIconTabBar .sapMITBScrollContainer {
+    padding: 0;
+    margin: 0;
+}
+
+.customIconTabBar .sapMITBHorizontalWrapper,
+.customIconTabBar .sapMITBHorizontal.sapMITBFilter>.sapMITBHorizontalWrapper>.sapMITBText {
+    max-width: none;
+    padding: 0 .5rem;
+}
+
+.ver-padding .sapMPanelContent {
+    padding: 1rem 0;
+}
+
+.no-padding,
+.no-padding .sapMPanelContent {
+    padding: 0;
+}
+
+.no-border {
+    border: 0;
+}
+
+.no-inline {
+    display: block;
+}
+
+.custom-padding .sapMPanelContent {
+    padding: 0 .1rem 1rem .1rem;
+}
+
+.customCityInput input,
+.customCityInput .sapMInputBaseContentWrapper {
+    border: 0;
+    font-size: 1.125rem;
+}
+
+.customCityInput .sapMInputBaseContentWrapperWarning {
+    border: 2px solid #f9a429;
+}
+
+.customCityInput .sapMInputBaseReadonlyWrapper,
+.customCityInput .sapMInputBaseDisabledWrapper {
+    background-color: transparent;
+}
+
+.sapMPopoverCont {
+    width: auto !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.hideBusy .sapUiLocalBusyIndicatorAnimation {
+    display: none;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.ie-fix .sapMCbBg.sapMCbMarkChecked::before {
+    position: absolute;
+    left: 2px;
+}
+
+
+/*ianikolaev: обходное решение для прыгающей таблицы при ресайзе окна*/
+
+.ZHR_FI_TV_REQ .zWorkListPage .sapMScrollBarOuterDiv {
+    display: none !important;
+}
+
+.ZHR_FI_TV_REQ .zWorkListPage header.sapFDynamicPageTitleWrapper {
+    padding-right: 0px !important;
+}
+
+.ZHR_FI_TV_REQ .zWorkListPage .sapFDynamicPageContentWrapper {
+    overflow: hidden !important;
+}
+
+.customFilesList li {
+    width: 100%;
+    padding: 0 !important;
+    background-color: transparent;
+    justify-content: left;
+}

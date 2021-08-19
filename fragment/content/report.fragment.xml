@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Panel visible="{= ${TripReport} ? true : false }" expandable="true" expanded="true" class="margin-top block tablePadding">
+		<headerToolbar>
+			<Toolbar class="title padding">
+				<Title titleStyle="H4" text="{i18n>report}"/>
+			</Toolbar>
+		</headerToolbar>
+		<HBox class="padding" wrap="Wrap" justifyContent="SpaceBetween">
+			<VBox width="100%">
+				<Label text="{i18n>reportText}" required="true"/>
+				<TextArea value="{TripReport}" maxLength="1000" growing="true" rows="2" showExceededText="true" enabled="{appView>/isCreate}" width="100%"/>
+			</VBox>
+			<VBox width="calc(50% - 1rem)">
+				<Label text="{i18n>orderFile}" required="true"/>
+				<List fieldGroupIds="fileList"
+					items="{ path: 'ToFile', filters: [{ path: 'Type', operator: 'EQ', value1: 'order' }], templateShareable: false }" modeAnimationOn="true"
+					showSeparators="None" showNoData="false" noDataText="Файлов не найдено" class="customFilesList" data:id="orderUploader" id="orderFileList">
+					<CustomListItem>
+						<HBox width="100%">
+							<Link text="{Filename}" wrapping="true" class="margin-right" target="_blank" href="{Uri}"/>
+						</HBox>
+					</CustomListItem>
+				</List>
+			</VBox>
+			<!--<VBox width="calc(50% - 1rem)">-->
+			<!--	<Label text="{i18n>reportFile}" required="true"/>-->
+			<!--	<List fieldGroupIds="fileList"-->
+			<!--		items="{ path: 'ToFile', filters: [{ path: 'Type', operator: 'EQ', value1: 'tripReport' }], templateShareable: false }"-->
+			<!--		modeAnimationOn="true" showSeparators="None" showNoData="false" noDataText="Файлов не найдено" class="customFilesList"-->
+			<!--		data:id="tripReportUploader" id="tripReportFileList">-->
+			<!--		<CustomListItem>-->
+			<!--			<HBox width="100%">-->
+			<!--				<Link text="{Filename}" wrapping="true" class="margin-right" target="_blank" href="{Uri}"/>-->
+			<!--			</HBox>-->
+			<!--		</CustomListItem>-->
+			<!--	</List>-->
+			<!--</VBox>-->
+		</HBox>
+	</Panel>
+</core:FragmentDefinition>
